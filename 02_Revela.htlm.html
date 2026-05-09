@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Révéla — Bilan de compétences & orientation professionnelle</title>
+<meta name="description" content="Révéla : bilan de compétences officiel en ligne, conforme Code du travail, financé CPF. Découvrez votre potentiel et construisez votre projet professionnel.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0e0b16;--bg2:#160e24;--bg3:#1e1430;
+  --text:#f5f0ff;--text2:#a89bc8;--text3:#6b5f84;
+  --violet:#7c3aed;--violet2:#6d28d9;--violet-soft:rgba(124,58,237,0.15);
+  --rose:#ec4899;--rose-soft:rgba(236,72,153,0.1);
+  --gold:#f0b429;--gold-soft:rgba(240,180,41,0.1);
+  --teal:#06b6d4;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
+  --r:16px;--r-sm:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:64px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(14,11,22,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;color:var(--text);text-decoration:none;letter-spacing:-0.3px}
+.logo span{color:var(--violet);font-style:italic}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-cta{display:flex;gap:10px}
+.btn-ghost{font-size:13px;padding:8px 18px;border-radius:30px;border:1px solid var(--border2);background:transparent;color:var(--text2);cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.btn-ghost:hover{border-color:var(--violet);color:var(--text)}
+.btn-violet{font-size:13px;padding:8px 18px;border-radius:30px;background:var(--violet);color:#fff;border:none;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;transition:all .2s}
+.btn-violet:hover{background:var(--violet2)}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:100px 5% 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(124,58,237,0.18) 0%,transparent 60%),radial-gradient(ellipse at 80% 30%,rgba(236,72,153,0.1) 0%,transparent 50%);z-index:0}
+.hero-orb{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.2) 0%,transparent 70%);top:50%;right:5%;transform:translateY(-50%);z-index:0;animation:pulse 4s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:translateY(-50%) scale(1)}50%{transform:translateY(-50%) scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:1100px;margin:0 auto;width:100%;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.hero-eyebrow{font-size:12px;font-weight:500;color:var(--violet);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(44px,5.5vw,72px);line-height:1.0;letter-spacing:-2px;margin-bottom:20px;color:var(--text)}
+h1 em{font-style:italic;color:var(--violet)}
+.hero-sub{font-size:16px;color:var(--text2);line-height:1.75;margin-bottom:36px;max-width:480px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn-hero{font-size:15px;padding:14px 32px;border-radius:30px;cursor:pointer;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;transition:all .25s;text-decoration:none;display:inline-block}
+.btn-hero.primary{background:linear-gradient(135deg,var(--violet),var(--rose));color:#fff;border:none;box-shadow:0 8px 24px rgba(124,58,237,0.3)}
+.btn-hero.primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,58,237,0.4)}
+.btn-hero.outline{background:transparent;border:1px solid var(--border2);color:var(--text)}
+.hero-proof{display:flex;gap:24px;flex-wrap:wrap}
+.proof-item{display:flex;align-items:center;gap:8px}
+.proof-icon{width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px}
+.proof-icon.v{background:var(--violet-soft)}
+.proof-icon.r{background:var(--rose-soft)}
+.proof-icon.g{background:var(--gold-soft)}
+.proof-text{font-size:12px;color:var(--text3);line-height:1.4}
+.proof-text strong{color:var(--text2);display:block;font-size:13px}
+
+/* Bilan card visual */
+.bilan-visual{position:relative}
+.bilan-card{background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:24px;box-shadow:0 24px 60px rgba(0,0,0,0.4)}
+.bc-header{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.bc-h1{font-family:'Cormorant Garamond',serif;font-size:16px;color:var(--text);margin-bottom:4px}
+.bc-h2{font-size:12px;color:var(--text3)}
+.phase-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:18px}
+.phase{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-sm);transition:all .2s}
+.phase.active{background:var(--violet-soft);border:1px solid rgba(124,58,237,0.25)}
+.phase.done{opacity:0.5}
+.phase-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.phase.active .phase-dot{background:var(--violet);color:#fff}
+.phase.done .phase-dot{background:rgba(255,255,255,0.1);color:var(--text3)}
+.phase.todo .phase-dot{background:rgba(255,255,255,0.05);color:var(--text3);border:1px solid var(--border2)}
+.phase-label{font-size:13px;color:var(--text);flex:1}
+.phase-time{font-size:11px;color:var(--text3)}
+.competence-radar{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.comp-item{background:rgba(255,255,255,0.03);border-radius:var(--r-sm);padding:8px 10px}
+.comp-name{font-size:11px;color:var(--text3);margin-bottom:4px}
+.comp-bar{height:3px;background:rgba(255,255,255,0.05);border-radius:2px;overflow:hidden}
+.comp-fill{height:100%;border-radius:2px}
+.float-chat{position:absolute;background:var(--bg2);border:1px solid var(--border2);border-radius:12px;padding:12px 14px;font-size:12px;color:var(--text2);box-shadow:0 8px 24px rgba(0,0,0,0.3);max-width:200px}
+.fc-left{top:-16px;left:-40px}
+.fc-right{bottom:16px;right:-30px}
+.fc-dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--teal);margin-right:6px;animation:blink 1.5s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
+
+/* SECTION GÉNÉRIQUE */
+.section{padding:80px 5%}
+.section-inner{max-width:1100px;margin:0 auto}
+.eyebrow{font-size:11px;font-weight:600;color:var(--violet);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.stitle{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,4vw,48px);line-height:1.1;letter-spacing:-1px;color:var(--text);margin-bottom:16px}
+.ssub{font-size:15px;color:var(--text2);line-height:1.7;max-width:520px}
+
+/* PHASES DU BILAN */
+.phases-section{background:var(--bg2)}
+.phases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px}
+.phase-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:border-color .2s}
+.phase-card:hover{border-color:var(--violet)}
+.phase-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--border2);line-height:1;margin-bottom:16px}
+.phase-card h3{font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px}
+.phase-card p{font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:16px}
+.phase-card ul{list-style:none;display:flex;flex-direction:column;gap:6px}
+.phase-card ul li{font-size:12px;color:var(--text3);display:flex;gap:8px}
+.phase-card ul li::before{content:'·';color:var(--violet);font-size:16px;line-height:1}
+.phase-hours{font-size:11px;color:var(--violet);font-weight:600;background:var(--violet-soft);border-radius:20px;padding:3px 10px;display:inline-block;margin-top:12px}
+
+/* POURQUOI */
+.why-section{background:var(--bg)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;margin-top:48px}
+.why-list{display:flex;flex-direction:column;gap:20px}
+.why-item{display:flex;gap:16px;align-items:flex-start}
+.why-icon{width:40px;height:40px;border-radius:10px;background:var(--violet-soft);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.why-item h4{font-size:15px;font-weight:600;color:var(--text);margin-bottom:4px}
+.why-item p{font-size:13px;color:var(--text2);line-height:1.6}
+.why-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.stat-card{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:24px;text-align:center}
+.stat-val{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1}
+.stat-val span{color:var(--violet)}
+.stat-label{font-size:13px;color:var(--text2)}
+
+/* FAQ */
+.faq-section{background:var(--bg2)}
+.faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:48px}
+.faq-item{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);padding:20px 24px;cursor:pointer;transition:border-color .2s}
+.faq-item:hover,.faq-item.open{border-color:rgba(124,58,237,0.4)}
+.faq-q{font-size:14px;font-weight:600;color:var(--text);display:flex;justify-content:space-between;align-items:center;gap:12px}
+.faq-arrow{color:var(--text3);transition:transform .2s;flex-shrink:0}
+.faq-item.open .faq-arrow{transform:rotate(180deg);color:var(--violet)}
+.faq-a{font-size:13px;color:var(--text2);line-height:1.7;margin-top:12px;display:none}
+.faq-item.open .faq-a{display:block}
+
+/* CTA SECTION */
+.cta-section{background:linear-gradient(135deg,var(--bg2) 0%,var(--bg3) 100%);padding:80px 5%;text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cta-section .stitle{max-width:600px;margin:0 auto 16px}
+.cta-section .ssub{margin:0 auto 36px;text-align:center}
+.cta-form{display:flex;gap:12px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-input{flex:1;min-width:200px;padding:13px 18px;border-radius:30px;border:1px solid var(--border2);background:rgba(255,255,255,0.05);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;outline:none}
+.cta-input:focus{border-color:var(--violet)}
+.btn-cta{padding:13px 28px;border-radius:30px;background:var(--violet);color:#fff;border:none;font-size:14px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+.btn-cta:hover{background:var(--violet2);transform:translateY(-1px)}
+.cta-note{font-size:12px;color:var(--text3);margin-top:12px}
+.cta-badges{display:flex;gap:12px;justify-content:center;margin-bottom:32px;flex-wrap:wrap}
+.cbadge{font-size:12px;padding:5px 14px;border-radius:20px;border:1px solid var(--border2);color:var(--text2)}
+
+/* FOOTER */
+footer{background:var(--bg);padding:60px 5% 32px;border-top:1px solid var(--border)}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.fb-logo{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--text);display:block;margin-bottom:12px;text-decoration:none}
+.fb-logo span{color:var(--violet);font-style:italic}
+footer p,footer a{font-size:13px;color:var(--text3);text-decoration:none;line-height:1.8}
+footer a:hover{color:var(--text2)}
+.fc-title{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:12px;color:var(--text3)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);border-radius:20px;padding:36px;max-width:480px;width:100%;position:relative}
+.modal-close{position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.06);border:none;cursor:pointer;color:var(--text2);font-size:18px;transition:all .2s}
+.modal-close:hover{background:rgba(255,255,255,0.1)}
+.modal h2{font-family:'Cormorant Garamond',serif;font-size:28px;color:var(--text);margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--text2);margin-bottom:28px}
+.form-group{margin-bottom:14px}
+label{display:block;font-size:13px;color:var(--text2);margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:11px 14px;border-radius:var(--r-sm);border:1px solid var(--border2);background:rgba(255,255,255,0.04);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--violet)}
+.form-group select option{background:var(--bg2)}
+.btn-submit{width:100%;padding:14px;border-radius:30px;background:linear-gradient(135deg,var(--violet),var(--rose));color:#fff;border:none;font-size:15px;font-family:'Plus Jakarta Sans',sans-serif;font-weight:600;cursor:pointer;margin-top:8px;transition:all .2s}
+.btn-submit:hover{opacity:0.9;transform:translateY(-1px)}
+.form-note{font-size:12px;color:var(--text3);text-align:center;margin-top:12px}
+
+@media(max-width:768px){
+  .hero-content,.why-grid,.faq-grid{grid-template-columns:1fr}
+  .bilan-visual,.float-chat{display:none}
+  .phases-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Ré<span>v</span>éla</a>
+  <ul class="nav-links">
+    <li><a href="#phases">Le bilan</a></li>
+    <li><a href="#pourquoi">Pourquoi Révéla</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <div class="nav-cta">
+    <button class="btn-ghost">Se connecter</button>
+    <button class="btn-violet" onclick="ouvrirModal()">Commencer mon bilan</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <div>
+      <div class="hero-eyebrow">Bilan de compétences officiel · Art. L6313 Code du travail</div>
+      <h1>Révélez ce que<br>vous <em>valez</em><br>vraiment.</h1>
+      <p class="hero-sub">Un bilan de compétences confidentiel, personnalisé et financé à 100% par votre CPF. Construisez un projet professionnel qui vous ressemble enfin.</p>
+      <div class="hero-actions">
+        <button class="btn-hero primary" onclick="ouvrirModal()">Démarrer mon bilan gratuit →</button>
+        <a href="#phases" class="btn-hero outline">Découvrir la méthode</a>
+      </div>
+      <div class="hero-proof">
+        <div class="proof-item">
+          <div class="proof-icon v">🔒</div>
+          <div class="proof-text"><strong>100% confidentiel</strong>Les résultats vous appartiennent</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-icon r">💳</div>
+          <div class="proof-text"><strong>Financé CPF</strong>Zéro reste à charge possible</div>
+        </div>
+        <div class="proof-item">
+          <div class="proof-icon g">✅</div>
+          <div class="proof-text"><strong>Certifié Qualiopi</strong>Conforme Code du travail</div>
+        </div>
+      </div>
+    </div>
+    <div class="bilan-visual">
+      <div class="float-chat fc-left"><span class="fc-dot"></span>Conseillère disponible maintenant</div>
+      <div class="bilan-card">
+        <div class="bc-header">
+          <div class="bc-h1">Mon bilan de compétences</div>
+          <div class="bc-h2">Semaine 4 · Phase d'investigation</div>
+        </div>
+        <div class="phase-steps">
+          <div class="phase done">
+            <div class="phase-dot">✓</div>
+            <div class="phase-label">Phase préliminaire</div>
+            <div class="phase-time">2h · Terminée</div>
+          </div>
+          <div class="phase active">
+            <div class="phase-dot">2</div>
+            <div class="phase-label">Investigation</div>
+            <div class="phase-time">18h · En cours</div>
+          </div>
+          <div class="phase todo">
+            <div class="phase-dot">3</div>
+            <div class="phase-label">Conclusion & synthèse</div>
+            <div class="phase-time">4h · À venir</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--text3);margin-bottom:10px;text-transform:uppercase;letter-spacing:1px">Compétences identifiées</div>
+        <div class="competence-radar">
+          <div class="comp-item">
+            <div class="comp-name">Leadership</div>
+            <div class="comp-bar"><div class="comp-fill" style="width:85%;background:var(--violet)"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">Communication</div>
+            <div class="comp-bar"><div class="comp-fill" style="width:90%;background:var(--rose)"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">Organisation</div>
+            <div class="comp-bar"><div class="comp-fill" style="width:72%;background:var(--gold)"></div></div>
+          </div>
+          <div class="comp-item">
+            <div class="comp-name">Analytique</div>
+            <div class="comp-bar"><div class="comp-fill" style="width:65%;background:var(--teal)"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="float-chat fc-right">"Votre profil est compatible avec 3 métiers en tension sur le marché 📈"</div>
+    </div>
+  </div>
+</section>
+
+<!-- PHASES -->
+<section id="phases" class="section phases-section">
+  <div class="section-inner">
+    <div class="eyebrow">Méthode</div>
+    <div class="stitle">3 phases pour un projet<br>professionnel solide</div>
+    <p class="ssub">Conformément au Code du travail (Art. L6313), votre bilan se déroule en 3 phases sur 6 à 8 semaines.</p>
+    <div class="phases-grid">
+      <div class="phase-card">
+        <div class="phase-num">01</div>
+        <h3>Phase préliminaire</h3>
+        <p>Nous définissons ensemble le cadre du bilan, vos attentes et la méthode adaptée à votre situation personnelle.</p>
+        <ul>
+          <li>Analyse de votre demande</li>
+          <li>Définition des objectifs</li>
+          <li>Information sur la confidentialité</li>
+          <li>Planification des séances</li>
+        </ul>
+        <span class="phase-hours">⏱ 2 heures</span>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">02</div>
+        <h3>Phase d'investigation</h3>
+        <p>Exploration approfondie de vos compétences, motivations, valeurs et aspirations professionnelles.</p>
+        <ul>
+          <li>Inventaire des compétences (ROME v4)</li>
+          <li>Tests d'intérêts et de personnalité</li>
+          <li>Analyse des valeurs professionnelles</li>
+          <li>Exploration des possibilités d'évolution</li>
+        </ul>
+        <span class="phase-hours">⏱ 18 heures</span>
+      </div>
+      <div class="phase-card">
+        <div class="phase-num">03</div>
+        <h3>Phase de conclusion</h3>
+        <p>Formulation de votre projet professionnel et remise du document de synthèse officiel.</p>
+        <ul>
+          <li>Projet professionnel défini et validé</li>
+          <li>Plan d'action concret avec jalons</li>
+          <li>Document de synthèse officiel (pour vous seul)</li>
+          <li>Suivi à 6 mois inclus</li>
+        </ul>
+        <span class="phase-hours">⏱ 4 heures</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POURQUOI -->
+<section id="pourquoi" class="section why-section">
+  <div class="section-inner">
+    <div class="why-grid">
+      <div>
+        <div class="eyebrow">Pourquoi Révéla</div>
+        <div class="stitle">Le bilan qui va plus<br>loin que les autres</div>
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">🧠</div>
+            <div>
+              <h4>Intelligence artificielle + expertise humaine</h4>
+              <p>Notre conseillère IA analyse votre profil en profondeur, complétée par un conseiller humain certifié à chaque étape clé.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">📊</div>
+            <div>
+              <h4>Cartographie de compétences unique</h4>
+              <p>Visualisez vos compétences selon les référentiels ROME v4 et RNCP — les mêmes que ceux utilisés par les recruteurs.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🎯</div>
+            <div>
+              <h4>Un plan d'action réaliste et financé</h4>
+              <p>Votre bilan inclut une analyse des financements disponibles (CPF, Transitions Pro, AIF) pour votre projet.</p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🔒</div>
+            <div>
+              <h4>Confidentialité absolue garantie</h4>
+              <p>Vos données restent les vôtres. La synthèse vous est remise exclusivement. RGPD strictement respecté.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="why-stats">
+        <div class="stat-card">
+          <div class="stat-val">94<span>%</span></div>
+          <div class="stat-label">Taux de satisfaction global</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">87<span>%</span></div>
+          <div class="stat-label">Ont trouvé un projet clair</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">0€</div>
+          <div class="stat-label">Reste à charge CPF possible</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val">6-8</div>
+          <div class="stat-label">Semaines pour un bilan complet</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq" class="section faq-section">
+  <div class="section-inner">
+    <div class="eyebrow">Questions fréquentes</div>
+    <div class="stitle">Tout ce que vous<br>voulez savoir</div>
+    <div class="faq-grid" id="faqGrid"></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="eyebrow">Commencez maintenant</div>
+  <div class="stitle">Votre projet professionnel<br><em>commence ici</em></div>
+  <p class="ssub">Rejoignez 1 200 personnes qui ont révélé leur potentiel avec Révéla.</p>
+  <div class="cta-badges">
+    <span class="cbadge">✅ Certifié Qualiopi</span>
+    <span class="cbadge">💳 Éligible CPF</span>
+    <span class="cbadge">🔒 100% confidentiel</span>
+    <span class="cbadge">📋 Conforme Code du travail</span>
+  </div>
+  <div class="cta-form">
+    <input class="cta-input" type="email" placeholder="Votre email">
+    <button class="btn-cta" onclick="ouvrirModal()">Démarrer mon bilan →</button>
+  </div>
+  <p class="cta-note">Premier entretien offert · Sans engagement · Annulation à tout moment</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="fb-logo">Ré<span>v</span>éla</a>
+      <p>Bilan de compétences officiel, conforme à l'Art. L6313 du Code du travail. Certifié Qualiopi. Éligible CPF.</p>
+    </div>
+    <div>
+      <div class="fc-title">Bilan</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#">Les 3 phases</a>
+        <a href="#">Financement CPF</a>
+        <a href="#">Pour les salariés</a>
+        <a href="#">Pour les demandeurs d'emploi</a>
+        <a href="#">Pour les TNS</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-title">Ressources</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#">Blog carrière</a>
+        <a href="#">Guide CPF</a>
+        <a href="#">Témoignages</a>
+        <a href="#">Nos conseillers</a>
+      </div>
+    </div>
+    <div>
+      <div class="fc-title">Légal</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#">Mentions légales</a>
+        <a href="#">CGV</a>
+        <a href="#">RGPD</a>
+        <a href="#">Déontologie</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Révéla · Bilan de compétences · N° prestataire : 11 XX XXXXX XX · Qualiopi ✓</span>
+    <span>Résultats du bilan remis exclusivement au bénéficiaire — Art. D6313-5 Code du travail</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalBilan">
+  <div class="modal">
+    <button class="modal-close" onclick="fermerModal()">✕</button>
+    <h2>Commencer mon bilan</h2>
+    <p class="modal-sub">Premier entretien offert et sans engagement. Réponse sous 24h.</p>
+    <div class="form-group"><label>Prénom & Nom</label><input type="text" placeholder="Marie Dupont"></div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="marie@email.fr"></div>
+    <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 XX XX XX XX"></div>
+    <div class="form-group">
+      <label>Votre situation actuelle</label>
+      <select>
+        <option>-- Choisir --</option>
+        <option>Salarié(e) en CDI</option>
+        <option>Salarié(e) en CDD</option>
+        <option>En recherche d'emploi</option>
+        <option>Indépendant(e) / TNS</option>
+        <option>Fonctionnaire</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Financement envisagé</label>
+      <select>
+        <option>CPF (Mon Compte Formation)</option>
+        <option>OPCO (employeur)</option>
+        <option>France Travail (AIF)</option>
+        <option>Personnel</option>
+        <option>Je ne sais pas encore</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Votre question principale</label>
+      <select>
+        <option>Changer de métier / reconversion</option>
+        <option>Évoluer dans mon entreprise</option>
+        <option>Mieux me connaître professionnellement</option>
+        <option>Valider un projet professionnel</option>
+        <option>Retrouver du sens dans mon travail</option>
+      </select>
+    </div>
+    <button class="btn-submit">Demander mon entretien offert →</button>
+    <p class="form-note">Données confidentielles · RGPD respecté · Jamais de démarchage</p>
+  </div>
+</div>
+
+<script>
+const FAQS = [
+  {q:"Qu'est-ce qu'un bilan de compétences ?", a:"Le bilan de compétences est un dispositif officiel (Art. L6313 du Code du travail) qui permet d'analyser vos compétences professionnelles et personnelles pour construire un projet d'évolution professionnelle. Sa durée est limitée à 24 heures réparties sur plusieurs semaines."},
+  {q:"Comment est financé le bilan ?", a:"Le bilan de compétences est éligible au CPF (Compte Personnel de Formation). Si votre solde CPF est suffisant (entre 1 500 et 3 000€), le reste à charge peut être nul. Nous vous aidons à monter votre dossier de financement gratuitement."},
+  {q:"Qui peut accéder aux résultats de mon bilan ?", a:"Les résultats et la synthèse de votre bilan vous appartiennent exclusivement. Nous ne pouvons pas les communiquer à votre employeur ou à tout tiers sans votre accord écrit explicite. C'est une obligation légale."},
+  {q:"Combien de temps dure un bilan de compétences ?", a:"Le bilan dure au maximum 24 heures, réparties sur 6 à 8 semaines. Les séances se font à votre rythme, en distanciel ou en hybride selon vos disponibilités."},
+  {q:"Quelle est la différence avec un conseil en orientation ?", a:"Un bilan de compétences est un dispositif officiel, encadré par le Code du travail, réalisé par un prestataire certifié Qualiopi. Il va plus loin qu'un conseil ponctuel : il produit une synthèse écrite officielle et un plan d'action structuré."},
+  {q:"Puis-je faire un bilan si je suis en CDI ?", a:"Absolument. Le bilan est ouvert à tous : salariés (CDI, CDD, intérimaires), demandeurs d'emploi, fonctionnaires, indépendants et TNS. Les modalités de financement varient selon votre statut, nous vous guidons."},
+];
+
+document.getElementById('faqGrid').innerHTML = FAQS.map(f=>`
+  <div class="faq-item" onclick="toggleFaq(this)">
+    <div class="faq-q">${f.q}<span class="faq-arrow">▾</span></div>
+    <div class="faq-a">${f.a}</div>
+  </div>
+`).join('');
+
+function toggleFaq(el){
+  const wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(f=>f.classList.remove('open'));
+  if(!wasOpen) el.classList.add('open');
+}
+function ouvrirModal(){document.getElementById('modalBilan').classList.add('open')}
+function fermerModal(){document.getElementById('modalBilan').classList.remove('open')}
+document.getElementById('modalBilan').addEventListener('click',e=>{if(e.target===e.currentTarget)fermerModal()});
+</script>
+</body>
+</html>

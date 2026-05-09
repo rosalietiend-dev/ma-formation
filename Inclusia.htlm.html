@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inclusia — École inclusive & formation accessible à tous</title>
+<meta name="description" content="Inclusia : école de formation 100% accessible, adaptée aux situations de handicap, RQTH, dyslexie, TDAH, TSA. Certifié Qualiopi, AGEFIPH.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --sky:#0284c7;--sky2:#0369a1;--sky-light:#e0f2fe;--sky-soft:#f0f9ff;
+  --teal:#0d9488;--teal-soft:#f0fdfa;
+  --sun:#f59e0b;--sun-soft:#fffbeb;
+  --coral:#ef4444;--coral-soft:#fef2f2;
+  --ink:#0f172a;--ink2:#334155;--ink3:#64748b;
+  --bg:#f8fafc;--white:#fff;
+  --r:16px;--r-sm:10px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Syne',sans-serif;background:var(--bg);color:var(--ink);overflow-x:hidden;font-size:16px;line-height:1.6}
+
+/* ACCESSIBILITÉ */
+:focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;height:68px;padding:0 5%;display:flex;align-items:center;justify-content:space-between;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:2px solid var(--sky-light)}
+.logo{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--ink);text-decoration:none}
+.logo span{color:var(--sky)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-size:14px;color:var(--ink3);text-decoration:none;transition:color .2s;font-weight:600}
+.nav-links a:hover{color:var(--ink)}
+.nav-a11y{display:flex;gap:6px;align-items:center;margin-right:12px}
+.a11y-btn{width:32px;height:32px;border-radius:6px;border:1px solid var(--sky-light);background:var(--white);cursor:pointer;font-size:15px;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:'Syne',sans-serif}
+.a11y-btn:hover{background:var(--sky-light);border-color:var(--sky)}
+.btn-sky{font-size:13px;padding:9px 20px;border-radius:30px;background:var(--sky);color:#fff;border:none;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;transition:all .2s}
+.btn-sky:hover{background:var(--sky2)}
+
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--sky-soft) 0%,var(--white) 60%);padding:120px 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(2,132,199,0.08) 0%,transparent 70%);pointer-events:none}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.hero-label{display:inline-flex;align-items:center;gap:8px;background:var(--sky-light);color:var(--sky2);border-radius:6px;padding:6px 14px;font-size:13px;font-weight:700;margin-bottom:24px}
+h1{font-weight:800;font-size:clamp(38px,5vw,62px);line-height:1.05;letter-spacing:-1px;margin-bottom:20px}
+h1 .highlight{color:var(--sky);background:linear-gradient(90deg,var(--sky),var(--teal));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-family:'Source Serif 4',serif;font-size:17px;color:var(--ink3);line-height:1.8;margin-bottom:32px;max-width:500px;font-weight:300}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:40px}
+.btn-hero{font-size:15px;padding:14px 30px;border-radius:8px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;transition:all .2s;display:inline-block;text-decoration:none}
+.btn-hero.sky{background:var(--sky);color:#fff;border:none}
+.btn-hero.sky:hover{background:var(--sky2);transform:translateY(-1px)}
+.btn-hero.outline{background:transparent;border:2px solid var(--sky);color:var(--sky)}
+.btn-hero.outline:hover{background:var(--sky-soft)}
+.hero-access-chips{display:flex;gap:8px;flex-wrap:wrap}
+.access-chip{font-size:12px;padding:5px 12px;border-radius:6px;font-weight:700;display:flex;align-items:center;gap:5px}
+.ac-blue{background:var(--sky-light);color:var(--sky2)}
+.ac-teal{background:var(--teal-soft);color:var(--teal)}
+.ac-sun{background:var(--sun-soft);color:var(--sun)}
+.ac-coral{background:var(--coral-soft);color:var(--coral)}
+.hero-visual{background:var(--white);border-radius:var(--r);padding:24px;border:2px solid var(--sky-light);box-shadow:0 16px 48px rgba(2,132,199,0.08)}
+.hv-title{font-size:15px;font-weight:700;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.hv-profiles{display:flex;flex-direction:column;gap:10px}
+.profile-row{display:flex;align-items:center;gap:12px;padding:12px;border-radius:var(--r-sm);background:var(--bg);border:1.5px solid transparent;transition:border-color .2s;cursor:pointer}
+.profile-row:hover{border-color:var(--sky)}
+.pr-icon{font-size:22px;width:40px;height:40px;background:var(--white);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.pr-name{font-size:14px;font-weight:700;color:var(--ink)}
+.pr-desc{font-size:12px;color:var(--ink3)}
+.pr-badge{font-size:11px;padding:3px 8px;border-radius:4px;font-weight:700;margin-left:auto;white-space:nowrap}
+
+/* HANDICAPS */
+.handicaps-section{background:var(--white);padding:80px 5%}
+.section-inner{max-width:1100px;margin:0 auto}
+.s-eyebrow{font-size:11px;font-weight:700;color:var(--sky);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px}
+.s-title{font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.1;letter-spacing:-0.5px;margin-bottom:16px}
+.s-sub{font-family:'Source Serif 4',serif;font-size:15px;color:var(--ink3);line-height:1.75;max-width:560px;font-weight:300}
+.handicaps-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.h-card{border:2px solid var(--bg);border-radius:var(--r);padding:24px;transition:all .2s;cursor:pointer}
+.h-card:hover{border-color:var(--sky);transform:translateY(-2px);box-shadow:0 8px 24px rgba(2,132,199,0.08)}
+.h-icon{font-size:36px;margin-bottom:14px}
+.h-title{font-size:16px;font-weight:700;color:var(--ink);margin-bottom:8px}
+.h-desc{font-size:13px;color:var(--ink3);line-height:1.65;margin-bottom:14px;font-family:'Source Serif 4',serif;font-weight:300}
+.h-adaptations{display:flex;flex-direction:column;gap:6px}
+.h-adapt{font-size:12px;color:var(--ink3);display:flex;gap:6px;align-items:flex-start}
+.h-adapt::before{content:'✓';color:var(--sky);font-weight:700;flex-shrink:0}
+
+/* SERVICES */
+.services-section{background:var(--sky);padding:80px 5%;color:#fff}
+.services-section .s-title{color:#fff}
+.services-section .s-sub{color:rgba(255,255,255,0.7)}
+.services-section .s-eyebrow{color:rgba(255,255,255,0.5)}
+.services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:48px}
+.service-card{background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:var(--r);padding:24px;transition:all .2s}
+.service-card:hover{background:rgba(255,255,255,0.14);transform:translateY(-2px)}
+.sc-icon{font-size:28px;margin-bottom:14px}
+.sc-title{font-size:15px;font-weight:700;color:#fff;margin-bottom:8px}
+.sc-desc{font-size:13px;color:rgba(255,255,255,0.65);line-height:1.65}
+
+/* DROITS */
+.droits-section{background:var(--bg);padding:80px 5%}
+.droits-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:48px;align-items:start}
+.droits-list{display:flex;flex-direction:column;gap:14px}
+.droit-item{background:var(--white);border:2px solid var(--sky-light);border-radius:var(--r-sm);padding:18px 20px;transition:border-color .2s}
+.droit-item:hover{border-color:var(--sky)}
+.droit-header{display:flex;align-items:center;gap:10px;margin-bottom:6px}
+.droit-icon{width:32px;height:32px;border-radius:7px;background:var(--sky-light);display:flex;align-items:center;justify-content:center;font-size:14px}
+.droit-title{font-size:14px;font-weight:700;color:var(--ink)}
+.droit-desc{font-size:13px;color:var(--ink3);line-height:1.6;font-family:'Source Serif 4',serif}
+.financement-card{background:var(--white);border:2px solid var(--sky-light);border-radius:var(--r);padding:28px}
+.fc-title{font-size:16px;font-weight:700;margin-bottom:20px;display:flex;align-items:center;gap:8px}
+.financement-items{display:flex;flex-direction:column;gap:12px}
+.fi-item{display:flex;align-items:flex-start;gap:14px;padding:14px;border-radius:var(--r-sm);background:var(--bg)}
+.fi-logo{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.fi-logo.sky{background:var(--sky-light)}
+.fi-logo.teal{background:var(--teal-soft)}
+.fi-logo.sun{background:var(--sun-soft)}
+.fi-name{font-size:14px;font-weight:700;color:var(--ink);margin-bottom:2px}
+.fi-desc{font-size:12px;color:var(--ink3);font-family:'Source Serif 4',serif}
+
+/* STATS */
+.stats-section{background:var(--white);padding:60px 5%}
+.stats-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat-card{text-align:center;padding:28px;border-radius:var(--r);background:var(--sky-soft);border:2px solid var(--sky-light)}
+.stat-val{font-size:48px;font-weight:800;color:var(--sky);line-height:1;margin-bottom:8px}
+.stat-label{font-size:14px;color:var(--ink2);font-family:'Source Serif 4',serif}
+
+/* TEMOIGNAGES */
+.testi-section{background:var(--bg);padding:80px 5%}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.testi-card{background:var(--white);border:2px solid var(--sky-light);border-radius:var(--r);padding:24px}
+.testi-profile{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+.t-avatar{width:40px;height:40px;border-radius:50%;background:var(--sky-light);display:flex;align-items:center;justify-content:center;font-size:18px}
+.t-name{font-size:14px;font-weight:700;color:var(--ink)}
+.t-context{font-size:12px;color:var(--ink3)}
+.testi-text{font-size:14px;color:var(--ink2);line-height:1.75;font-family:'Source Serif 4',serif;font-style:italic}
+.testi-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:12px}
+.tt{font-size:11px;padding:3px 8px;border-radius:4px;background:var(--sky-light);color:var(--sky2);font-weight:700}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,var(--sky2),var(--teal));padding:80px 5%;text-align:center;color:#fff}
+.cta-section .s-title{color:#fff;max-width:600px;margin:0 auto 16px}
+.cta-sub{font-family:'Source Serif 4',serif;font-size:16px;color:rgba(255,255,255,0.75);margin-bottom:32px}
+.cta-form{display:flex;gap:12px;max-width:440px;margin:0 auto;flex-wrap:wrap;justify-content:center;margin-bottom:14px}
+.cta-input{flex:1;min-width:200px;padding:13px 18px;border-radius:8px;border:2px solid rgba(255,255,255,0.2);background:rgba(255,255,255,0.1);color:#fff;font-family:'Syne',sans-serif;font-size:14px;outline:none}
+.cta-input::placeholder{color:rgba(255,255,255,0.5)}
+.cta-input:focus{border-color:rgba(255,255,255,0.5)}
+.btn-cta{padding:13px 28px;border-radius:8px;background:#fff;color:var(--sky);border:none;font-size:14px;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;transition:all .2s}
+.btn-cta:hover{transform:translateY(-1px)}
+.cta-a11y{font-size:12px;color:rgba(255,255,255,0.6);margin-top:12px}
+
+footer{background:var(--ink);padding:60px 5% 32px;color:rgba(255,255,255,0.5)}
+.footer-grid{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.fl-logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;display:block;margin-bottom:12px;text-decoration:none}
+.fl-logo span{color:var(--sky)}
+footer p,footer a{font-size:13px;color:rgba(255,255,255,0.4);text-decoration:none;line-height:1.8}
+footer a:hover{color:#fff}
+.ft-title{font-size:11px;font-weight:700;color:rgba(255,255,255,0.6);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:14px}
+.footer-bottom{max-width:1100px;margin:0 auto;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:12px;color:rgba(255,255,255,0.25)}
+
+/* MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;border-radius:var(--r);padding:36px;max-width:480px;width:100%;position:relative;border:2px solid var(--sky-light)}
+.modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:8px;background:var(--sky-light);border:none;cursor:pointer;font-size:16px;transition:all .2s;font-family:'Syne',sans-serif;font-weight:700}
+.modal-close:hover{background:var(--sky);color:#fff}
+.modal h2{font-size:26px;font-weight:800;color:var(--ink);margin-bottom:6px}
+.modal-sub{font-size:14px;color:var(--ink3);margin-bottom:24px;font-family:'Source Serif 4',serif}
+.form-group{margin-bottom:14px}
+label{display:block;font-size:13px;font-weight:700;color:var(--ink2);margin-bottom:6px}
+.form-group input,.form-group select{width:100%;padding:11px 14px;border-radius:var(--r-sm);border:2px solid var(--sky-light);font-family:'Syne',sans-serif;font-size:14px;color:var(--ink);background:#fff;outline:none;transition:border-color .2s}
+.form-group input:focus,.form-group select:focus{border-color:var(--sky)}
+.btn-submit{width:100%;padding:14px;border-radius:8px;background:var(--sky);color:#fff;border:none;font-size:15px;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;margin-top:8px;transition:all .2s}
+.btn-submit:hover{background:var(--sky2)}
+.form-note{font-size:12px;color:var(--ink3);text-align:center;margin-top:12px;font-family:'Source Serif 4',serif}
+.a11y-notice{background:var(--sky-soft);border:2px solid var(--sky-light);border-radius:var(--r-sm);padding:12px;margin-bottom:16px;font-size:13px;color:var(--sky2);font-weight:600}
+
+@media(max-width:768px){
+  .hero-inner,.droits-grid,.footer-grid{grid-template-columns:1fr}
+  .handicaps-grid,.services-grid,.stats-grid,.testi-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">Inclu<span>sia</span></a>
+  <ul class="nav-links">
+    <li><a href="#handicaps">Accessibilité</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#droits">Droits & financements</a></li>
+  </ul>
+  <div style="display:flex;align-items:center">
+    <div class="nav-a11y">
+      <button class="a11y-btn" onclick="agrandirTexte()" title="Agrandir le texte" aria-label="Agrandir le texte">A+</button>
+      <button class="a11y-btn" onclick="réduireTexte()" title="Réduire le texte" aria-label="Réduire le texte">A-</button>
+      <button class="a11y-btn" onclick="toggleContraste()" title="Contraste élevé" aria-label="Contraste élevé">◑</button>
+    </div>
+    <button class="btn-sky" onclick="ouvrirModal()">Évaluation gratuite</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-label">♿ École inclusive · WCAG 2.1 AA · RQTH · AGEFIPH</div>
+      <h1>La formation<br><span class="highlight">accessible</span><br>à tous.</h1>
+      <p class="hero-sub">Parce que le handicap ne doit jamais être un obstacle à apprendre. Contenus adaptés, aménagements personnalisés, accompagnement dédié.</p>
+      <div class="hero-actions">
+        <button class="btn-hero sky" onclick="ouvrirModal()">Évaluation gratuite de mes besoins →</button>
+        <a href="#handicaps" class="btn-hero outline">Voir les adaptations</a>
+      </div>
+      <div class="hero-access-chips">
+        <span class="access-chip ac-blue">👁 Malvoyant</span>
+        <span class="access-chip ac-teal">👂 Malentendant</span>
+        <span class="access-chip ac-sun">🧠 TDAH / TSA</span>
+        <span class="access-chip ac-coral">📖 Dyslexie</span>
+        <span class="access-chip ac-blue">🦽 Mobilité réduite</span>
+        <span class="access-chip ac-teal">💬 Cognitif</span>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hv-title">♿ Profils accompagnés</div>
+      <div class="hv-profiles" id="profilesPreview"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card"><div class="stat-val">100%</div><div class="stat-label">Contenus accessibles WCAG 2.1 AA</div></div>
+    <div class="stat-card"><div class="stat-val">12</div><div class="stat-label">Types de handicap pris en charge</div></div>
+    <div class="stat-card"><div class="stat-val">0€</div><div class="stat-label">Reste à charge AGEFIPH possible</div></div>
+    <div class="stat-card"><div class="stat-val">96%</div><div class="stat-label">Taux de satisfaction apprenants RQTH</div></div>
+  </div>
+</div>
+
+<!-- HANDICAPS -->
+<section id="handicaps" class="handicaps-section">
+  <div class="section-inner">
+    <div class="s-eyebrow">Adaptations</div>
+    <div class="s-title">Des contenus faits<br>pour votre situation</div>
+    <p class="s-sub">Chaque profil bénéficie d'adaptations spécifiques, conformes aux standards WCAG 2.1 et FALC.</p>
+    <div class="handicaps-grid" id="handicapsGrid"></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services" class="services-section">
+  <div class="section-inner">
+    <div class="s-eyebrow">Nos services</div>
+    <div class="s-title">L'accompagnement complet</div>
+    <p class="s-sub">Du diagnostic initial à la certification, nous assurons un suivi personnalisé à chaque étape.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="sc-icon">🔍</div>
+        <div class="sc-title">Diagnostic accessibilité</div>
+        <p class="sc-desc">Évaluation gratuite de vos besoins et recommandation des adaptations les plus adaptées.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">📝</div>
+        <div class="sc-title">Contenu adapté FALC</div>
+        <p class="sc-desc">Toutes nos formations disponibles en version Facile À Lire et à Comprendre, avec pictogrammes.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">👩‍💼</div>
+        <div class="sc-title">Référent handicap dédié</div>
+        <p class="sc-desc">Un conseiller spécialisé vous accompagne dans vos démarches MDPH, AGEFIPH et RQTH.</p>
+      </div>
+      <div class="service-card">
+        <div class="sc-icon">⚙️</div>
+        <div class="sc-title">Aménagements sur mesure</div>
+        <p class="sc-desc">Tiers-temps, supports alternatifs, pauses supplémentaires, logiciels de compensation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DROITS ET FINANCEMENTS -->
+<section id="droits" class="droits-section">
+  <div class="section-inner">
+    <div class="s-eyebrow">Droits & Financements</div>
+    <div class="s-title">Tout ce à quoi<br>vous avez droit</div>
+    <div class="droits-grid">
+      <div class="droits-list">
+        <div class="droit-item"><div class="droit-header"><div class="droit-icon">🏛️</div><div class="droit-title">RQTH — Reconnaissance de la Qualité de Travailleur Handicapé</div></div><p class="droit-desc">Ouvre droit à des aménagements spécifiques en formation et dans l'emploi. Démarche gratuite via la MDPH. Nous vous accompagnons.</p></div>
+        <div class="droit-item"><div class="droit-header"><div class="droit-icon">📋</div><div class="droit-title">Plan Personnalisé de Compensation (PPC)</div></div><p class="droit-desc">Document qui formalise l'ensemble des aménagements auxquels vous avez droit tout au long de votre formation.</p></div>
+        <div class="droit-item"><div class="droit-header"><div class="droit-icon">⏱️</div><div class="droit-title">Tiers-temps aux évaluations</div></div><p class="droit-desc">Les apprenants RQTH bénéficient automatiquement de 1/3 de temps supplémentaire pour toutes les évaluations.</p></div>
+        <div class="droit-item"><div class="droit-header"><div class="droit-icon">🛡️</div><div class="droit-title">Confidentialité absolue</div></div><p class="droit-desc">Votre situation de handicap n'est jamais communiquée à des tiers sans votre accord. RGPD strict.</p></div>
+      </div>
+      <div class="financement-card">
+        <div class="fc-title">💰 Financements disponibles</div>
+        <div class="financement-items">
+          <div class="fi-item"><div class="fi-logo sky">🏦</div><div><div class="fi-name">AGEFIPH</div><div class="fi-desc">Jusqu'à 5 000€/an pour les travailleurs handicapés du secteur privé. Aide à la formation et aux équipements.</div></div></div>
+          <div class="fi-item"><div class="fi-logo teal">💳</div><div><div class="fi-name">CPF Majoré</div><div class="fi-desc">Plafond CPF porté à 8 000€ pour les personnes en situation de handicap (vs 5 000€ standard).</div></div></div>
+          <div class="fi-item"><div class="fi-logo sky">🏢</div><div><div class="fi-name">Surcoût OPCO</div><div class="fi-desc">Les surcoûts liés au handicap (interprète LSF, matériel adapté) sont pris en charge par votre OPCO.</div></div></div>
+          <div class="fi-item"><div class="fi-logo sun">🎓</div><div><div class="fi-name">FIPHFP</div><div class="fi-desc">Pour les fonctionnaires. Équivalent AGEFIPH pour la fonction publique (État, territorial, hospitalier).</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TÉMOIGNAGES -->
+<section class="testi-section">
+  <div class="section-inner">
+    <div class="s-eyebrow">Témoignages</div>
+    <div class="s-title">Ils ont réussi leur formation</div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-profile"><div class="t-avatar">📚</div><div><div class="t-name">Pierre M., 42 ans</div><div class="t-context">Dyslexie — Comptable</div></div></div>
+        <p class="testi-text">La police OpenDyslexic et les résumés audio ont tout changé. Pour la première fois, j'ai pu suivre une formation sans prendre 3 fois plus de temps que les autres. Certification obtenue du premier coup.</p>
+        <div class="testi-tags"><span class="tt">Dyslexie</span><span class="tt">Comptabilité</span><span class="tt">AGEFIPH</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-profile"><div class="t-avatar">🦻</div><div><div class="t-name">Fatima R., 35 ans</div><div class="t-context">Déficience auditive — RH</div></div></div>
+        <p class="testi-text">Les sous-titres automatiques sur toutes les vidéos, les transcriptions de chaque cours... J'avais l'impression d'être enfin prise en compte. Mon référent handicap m'a aidée à obtenir l'AGEFIPH sans stress.</p>
+        <div class="testi-tags"><span class="tt">Malentendant</span><span class="tt">RH</span><span class="tt">CPF majoré</span></div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-profile"><div class="t-avatar">🧠</div><div><div class="t-name">Lucas V., 28 ans</div><div class="t-context">TDAH — Développeur</div></div></div>
+        <p class="testi-text">Les modules de 7 minutes avec pauses régulières correspondent parfaitement à mon fonctionnement. Le mode focus masquant les distractions... Je n'aurais jamais imaginé terminer une formation avant Inclusia.</p>
+        <div class="testi-tags"><span class="tt">TDAH</span><span class="tt">Digital</span><span class="tt">Mode focus</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="s-title">Votre handicap ne vous<br>définit pas. Votre potentiel, si.</div>
+  <p class="cta-sub">Évaluation gratuite de vos besoins d'accessibilité. Réponse sous 48h.</p>
+  <div class="cta-form">
+    <input class="cta-input" type="email" placeholder="Votre adresse email">
+    <button class="btn-cta" onclick="ouvrirModal()">Évaluation gratuite →</button>
+  </div>
+  <p class="cta-a11y">Version accessible disponible · WCAG 2.1 AA · Contenu en FALC sur demande</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="fl-logo">Inclu<span>sia</span></a>
+      <p>École inclusive certifiée Qualiopi. Formations adaptées aux situations de handicap. AGEFIPH, CPF majoré, RQTH.</p>
+    </div>
+    <div>
+      <div class="ft-title">Accessibilité</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#">Dyslexie</a><a href="#">Déficience visuelle</a>
+        <a href="#">Surdité</a><a href="#">TDAH / TSA</a><a href="#">Mobilité</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-title">Droits</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#">RQTH — MDPH</a><a href="#">AGEFIPH</a>
+        <a href="#">CPF Majoré</a><a href="#">Nos engagements</a>
+      </div>
+    </div>
+    <div>
+      <div class="ft-title">Légal</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <a href="#">Accessibilité numérique</a><a href="#">Mentions légales</a>
+        <a href="#">RGPD</a><a href="#">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Inclusia · WCAG 2.1 AA · Qualiopi ✓ · AGEFIPH partenaire</span>
+    <span>Conformité Loi 11 février 2005 · RGAA 4.1 ✓</span>
+  </div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modalInclusia">
+  <div class="modal">
+    <button class="modal-close" onclick="fermerModal()">✕</button>
+    <div class="a11y-notice">♿ Formulaire accessible. Si vous avez besoin d'une assistance, appelez le <strong>0 800 XXX XXX</strong> (numéro gratuit).</div>
+    <h2>Évaluation gratuite</h2>
+    <p class="modal-sub">Nous analysons vos besoins pour proposer les meilleures adaptations.</p>
+    <div class="form-group"><label>Prénom & Nom</label><input type="text" placeholder="Pierre Martin" autocomplete="name"></div>
+    <div class="form-group"><label>Email</label><input type="email" placeholder="pierre@email.fr" autocomplete="email"></div>
+    <div class="form-group"><label>Téléphone</label><input type="tel" placeholder="06 XX XX XX XX" autocomplete="tel"></div>
+    <div class="form-group">
+      <label>Type de situation (facultatif — confidentiel)</label>
+      <select>
+        <option value="">-- Je préfère ne pas préciser --</option>
+        <option>Dyslexie / Dysorthographie</option>
+        <option>Déficience visuelle</option>
+        <option>Déficience auditive / Surdité</option>
+        <option>TDAH</option>
+        <option>Troubles du spectre autistique (TSA)</option>
+        <option>Mobilité réduite / PMR</option>
+        <option>Maladie chronique</option>
+        <option>Autre</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Formation qui vous intéresse</label>
+      <select>
+        <option>-- Choisir --</option>
+        <option>Gestion de projet</option>
+        <option>Digital & Bureautique</option>
+        <option>Management</option>
+        <option>Comptabilité</option>
+        <option>Ressources humaines</option>
+        <option>Autre (à préciser par email)</option>
+      </select>
+    </div>
+    <button class="btn-submit">Demander mon évaluation gratuite →</button>
+    <p class="form-note">Données confidentielles · RGPD strict · Jamais partagées sans accord · Réponse sous 48h</p>
+  </div>
+</div>
+
+<script>
+const PROFILES = [
+  {icon:"👁",name:"Déficience visuelle",desc:"Contraste élevé, lecteur d'écran, navigation clavier",badge:"WCAG 2.1 AA",bc:"sky"},
+  {icon:"👂",name:"Déficience auditive",desc:"Sous-titres SRT, transcriptions, LSF",badge:"Sous-titres",bc:"teal"},
+  {icon:"📖",name:"Dyslexie",desc:"Police OpenDyslexic, syllabes colorées, audio",badge:"FALC",bc:"sun"},
+  {icon:"⚡",name:"TDAH / Hyperactivité",desc:"Modules 7 min, mode focus, pauses programmées",badge:"Mode focus",bc:"coral"},
+];
+
+const HANDICAP_DATA = [
+  {icon:"👁️",title:"Déficience visuelle",desc:"Adaptation complète pour malvoyants et non-voyants, compatible avec tous les lecteurs d'écran.",adaptations:["Contraste WCAG 4.5:1 minimum","Texte alternatif sur toutes les images","Navigation 100% clavier","Compatible NVDA, JAWS, VoiceOver"]},
+  {icon:"👂",title:"Déficience auditive & surdité",desc:"Tous les contenus audio et vidéo disponibles en format texte et sous-titres.",adaptations:["Sous-titres SRT pour toutes les vidéos","Transcriptions textuelles complètes","Vidéos en Langue des Signes (LSF)","Alertes visuelles uniquement"]},
+  {icon:"📖",title:"Dyslexie & dysorthographie",desc:"Mise en forme spécialement étudiée pour faciliter la lecture et la mémorisation.",adaptations:["Police OpenDyslexic disponible","Interlignage 1.5 minimum","Syllabes colorées en alternance","Résumé audio de chaque section"]},
+  {icon:"⚡",title:"TDAH",desc:"Structure fractionnée et environnement épuré pour maintenir l'attention.",adaptations:["Modules de 7 minutes maximum","Mode focus (masque les distractions)","Max 3 informations nouvelles par écran","Barre de progression toujours visible"]},
+  {icon:"🔵",title:"Troubles du spectre autistique",desc:"Langage littéral, structure prévisible et pictogrammes pour chaque concept.",adaptations:["Pas de figures de style","Structure identique à chaque cours","Pictogrammes pour toutes les étapes","Changements annoncés à l'avance"]},
+  {icon:"💬",title:"Troubles cognitifs & FALC",desc:"Tous nos contenus disponibles en version simplifiée, validée selon les standards FALC.",adaptations:["Phrases de 15 mots maximum","Un seul message par phrase","Mots de niveau CM2 uniquement","Résumé en début et fin de chaque leçon"]},
+];
+
+document.getElementById('profilesPreview').innerHTML = PROFILES.map(p=>`
+  <div class="profile-row">
+    <div class="pr-icon">${p.icon}</div>
+    <div><div class="pr-name">${p.name}</div><div class="pr-desc">${p.desc}</div></div>
+    <div class="pr-badge ac-${p.bc}" style="background:var(--${p.bc}-soft);color:var(--${p.bc})">${p.badge}</div>
+  </div>
+`).join('');
+
+document.getElementById('handicapsGrid').innerHTML = HANDICAP_DATA.map(h=>`
+  <div class="h-card">
+    <div class="h-icon">${h.icon}</div>
+    <div class="h-title">${h.title}</div>
+    <p class="h-desc">${h.desc}</p>
+    <div class="h-adaptations">${h.adaptations.map(a=>`<div class="h-adapt">${a}</div>`).join('')}</div>
+  </div>
+`).join('');
+
+let fontSize = 16;
+function agrandirTexte(){fontSize=Math.min(fontSize+2,22);document.body.style.fontSize=fontSize+'px'}
+function réduireTexte(){fontSize=Math.max(fontSize-2,12);document.body.style.fontSize=fontSize+'px'}
+let contrastHigh=false;
+function toggleContraste(){
+  contrastHigh=!contrastHigh;
+  if(contrastHigh){document.body.style.filter='contrast(1.3)'}
+  else{document.body.style.filter='none'}
+}
+
+function ouvrirModal(){document.getElementById('modalInclusia').classList.add('open')}
+function fermerModal(){document.getElementById('modalInclusia').classList.remove('open')}
+document.getElementById('modalInclusia').addEventListener('click',e=>{if(e.target===e.currentTarget)fermerModal()});
+</script>
+</body>
+</html>
